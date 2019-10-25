@@ -1,0 +1,1 @@
+<?php	function sumar($a, $b)	{		$res = $a + $b;		return $res;	}	function sumar2($a, $b, &$res)	{		$res = $a + $b;	}	?>

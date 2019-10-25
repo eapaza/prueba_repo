@@ -2,10 +2,10 @@
 	$nombre = $_GET['nombre'];
 	$apellido = $_GET['apellido'];
 	$edad = $_GET['edad'];
-	$C.I. = $_GET['ci'];
+	$ci = $_GET['ci'];
 
 	
-	echo "<h2>INFORMAIÓN DEL FORMULARIOEl<h2> "
+	echo "<h2>INFORMACIÓN DEL FORMULARIOEl<h2> ";
  	echo "<br/><br/>";
         echo "Nombre es: ".$nombre;
 	echo"<br/>";
