@@ -40,4 +40,25 @@
 		}
 		return true;
 	}
+	
+	function modificar($id, $descripcion)
+	{
+		$conn = getConexion();
+		$stmt = $conn->query("update prueba set descripcion = '{$descripcion}' where id = {$id}");
+		if ( !$stmt ) {
+			return false;
+		}
+		return true;
+	}
+	
+	function eliminar($id)
+	{
+		$conn = getConexion();
+		$stmt = $conn->query("delete from prueba where id = {$id}");
+		if ( !$stmt ) {
+			return false;
+		}
+		return true;
+	}
+	
 ?>

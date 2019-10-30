@@ -3,8 +3,10 @@
 	$msg = '';
 	$conn = getConexion();
 	$id = '';
+	//$descripcion = isset($_REQUEST['descripcion']) ? $_REQUEST['descripcion'] : '' ;
 	$descripcion = '';
 	$opeaux = '';
+	$ope = isset($_REQUEST['ope']) ? $_REQUEST['ope'] : '';
 	
 	// modo spagetti
 /*	if (isset($_REQUEST['id'])) {
@@ -59,7 +61,7 @@
 	
 	
 	// modo optimo
-	if (isset($_REQUEST['ope']))
+	if ($ope == 'upd')
 	{
 	   $datos = consultar("SELECT * FROM prueba WHERE id = {$_REQUEST['id']}");
 	   foreach($datos as $row)
@@ -68,37 +70,45 @@
 		  $descripcion = $row['descripcion'];
 	   }			
 	   $opeaux = 'mod';
-    }
-    		
-	if (isset($_REQUEST['id'])) 
-	{
-		if ( $_REQUEST['descripcion'] != '' )
+
+    } else {
+		if (isset($_REQUEST['id'])) 
 		{
-	       $res_ins = insertar($_REQUEST['id'], $_REQUEST['descripcion']);
-	       if (!$res_ins)
-	          {
-		         $msg = 'Error en el insert';
-	          } 
-	       else 
-	          {
-		         $msg = 'Insert correcto!!';
-	          }
-	    }      
-	    else 
-	    {
-		   $msg = 'Es necesario ingresar la descripcion';
-		}
-    }	        
-    else 
-    {
-	   $msg = 'Es necesario ingresar el Id';
-	} 	
-	
+			if ( $_REQUEST['descripcion'] != '' )
+			{
+				if ( $_REQUEST['opeaux'] == 'mod') {
+					$res = modificar($_REQUEST['id'], $_REQUEST['descripcion']);
+				} elseif ($ope == 'del') {
+					$res = eliminar($_REQUEST['id']);
+				} else {
+					$res = insertar($_REQUEST['id'], $_REQUEST['descripcion']);
+				}
+				
+				if (!$res)
+				  {
+					 $msg = 'Error en el proceso';
+				  } 
+				else 
+				  {
+					 $msg = 'proceso correcto!!';
+				  }
+			}      
+			else 
+			{
+			   $msg = 'Es necesario ingresar la descripcion';
+			}
+		}	        
+		else 
+		{
+		   $msg = 'Es necesario ingresar el Id';
+		} 	
+	}
 	
 	$datos = consultar("SELECT * FROM prueba");
 	$tablaDetalle = '';
 	foreach($datos as $row){
-		$tablaDetalle .= "<tr><td>{$row['id']}</td><td>{$row['descripcion']}</td><td><a href='procesar_bbdd_gus.php?id={$row['id']}&ope=upd'>editar</a><a href='procesar_bbdd_gus.php?id={$row['id']}&ope=del'> eliminar</a></td><tr>";
+		$desc = '"' . "{$row['descripcion']}" . '"';
+		$tablaDetalle .= "<tr><td>{$row['id']}</td><td>{$row['descripcion']}</td><td><a href='procesar_bbdd_gus.php?id={$row['id']}&ope=upd'>editar</a><a href='#' onClick='confirmar({$row['id']},{$desc})'> eliminar</a></td><tr>";
 	}
 	$tabla =  "<table border='1'> 
 			<thead>
@@ -162,7 +172,7 @@
 		  <br>
 		  DESCRIPCION:<br>
 		  <input type="string" name="descripcion" value="<?php echo $descripcion; ?>" >
-		  <input type="string" name="opeaux" value="<?php echo $opeaux; ?>">
+		  <input type="hidden" name="opeaux" value="<?php echo $opeaux; ?>">
 		  <br>
 		  <input type="submit" value="GUARDAR">
 		</form>
@@ -172,3 +182,13 @@
 		
 	</body>
 </html>
+<script>
+	function confirmar(id, descripcion)
+	{
+		res = confirm("Esta seguro de eliminar el id: " + id + " - " + descripcion);
+		if (res)
+		{
+			window.location.href = "procesar_bbdd_gus.php?id=" + id + "&descripcion=" + descripcion + "&ope=del&opeaux=del";
+		}
+	}
+</script>
