@@ -1,5 +1,5 @@
 <?php
-	require('funciones_bbdd.php');
+	require('funciones_bbdd_gus.php');
 	$msg = '';
 	$conn = getConexion();
 	$id = '';
@@ -98,7 +98,7 @@
 	$datos = consultar("SELECT * FROM prueba");
 	$tablaDetalle = '';
 	foreach($datos as $row){
-		$tablaDetalle .= "<tr><td>{$row['id']}</td><td>{$row['descripcion']}</td><td><a href='procesar_bbdd?id={$row['id']}&ope=upd'>editar</a><a href='procesar_bbdd?id={$row['id']}&ope=del'> eliminar</a></td><tr>";
+		$tablaDetalle .= "<tr><td>{$row['id']}</td><td>{$row['descripcion']}</td><td><a href='procesar_bbdd_gus?id={$row['id']}&ope=upd'>editar</a><a href='procesar_bbdd_gus?id={$row['id']}&ope=del'> eliminar</a></td><tr>";
 	}
 	$tabla =  "<table border='1'> 
 			<thead>
