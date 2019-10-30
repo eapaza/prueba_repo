@@ -168,7 +168,7 @@
 		     <input type="text" name="mensaje" readOnly="true" class="sinbordefondo" value="<?php echo $msg; ?>" >
 		  <br>
 		  ID:<br>
-		  <input type="number" name="id" value="<?php echo $id; ?>" >
+		  <input type="number" name="id" value="<?php echo $id; ?>" <?php echo $opeaux=='mod' ? 'readOnly' : ''?>>
 		  <br>
 		  DESCRIPCION:<br>
 		  <input type="string" name="descripcion" value="<?php echo $descripcion; ?>" >
