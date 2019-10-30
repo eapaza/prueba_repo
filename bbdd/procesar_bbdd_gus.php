@@ -72,7 +72,7 @@
     		
 	if (isset($_REQUEST['id'])) 
 	{
-		if (isset($_REQUEST['descripcion']))
+		if ( $_REQUEST['descripcion'] != '' )
 		{
 	       $res_ins = insertar($_REQUEST['id'], $_REQUEST['descripcion']);
 	       if (!$res_ins)
@@ -98,7 +98,7 @@
 	$datos = consultar("SELECT * FROM prueba");
 	$tablaDetalle = '';
 	foreach($datos as $row){
-		$tablaDetalle .= "<tr><td>{$row['id']}</td><td>{$row['descripcion']}</td><td><a href='procesar_bbdd_gus?id={$row['id']}&ope=upd'>editar</a><a href='procesar_bbdd_gus?id={$row['id']}&ope=del'> eliminar</a></td><tr>";
+		$tablaDetalle .= "<tr><td>{$row['id']}</td><td>{$row['descripcion']}</td><td><a href='procesar_bbdd_gus.php?id={$row['id']}&ope=upd'>editar</a><a href='procesar_bbdd_gus.php?id={$row['id']}&ope=del'> eliminar</a></td><tr>";
 	}
 	$tabla =  "<table border='1'> 
 			<thead>
@@ -153,7 +153,7 @@
     </head>
 	<body>
 		<h2>ABM BASE DE DATOS</h2>
-		<form method="post" action="procesar_bbdd.php">
+		<form method="post" action="procesar_bbdd_gus.php">
 		  <br>
 		     <input type="text" name="mensaje" readOnly="true" class="sinbordefondo" value="<?php echo $msg; ?>" >
 		  <br>
