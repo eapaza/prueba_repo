@@ -92,7 +92,7 @@
 				  {
 					 $msg = 'proceso correcto!!';
 				  }
-			}      
+			}
 			else 
 			{
 			   $msg = 'Es necesario ingresar la descripcion';

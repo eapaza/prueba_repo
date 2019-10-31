@@ -97,8 +97,8 @@
 		$apellido1 = '"' . "{$row['apellido']}" . '"';
 		$tablaDetalle .= "<tr><td>{$row['id']}</td><td>{$row['codigo']}</td><td>{$row['nombre']}</td><td>{$row['apellido']}</td><td><a href='procesar_usuarios_gus.php?id={$row['id']}&ope=upd'>editar</a><a href='#' onClick='confirmar({$row['id']},{$codigo1},{$nombre1},{$apellido1})'> eliminar</a></td><tr>";
 	}
-	$tabla =  "<table border='1'> 
-			<thead>
+	$tabla =  '<table class="table"> 
+			<thead class="thead-dark">
 				<tr>
 					<td>ID</td>
 					<td>CODIGO</td>
@@ -108,9 +108,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				{$tablaDetalle}
+				' . $tablaDetalle . '
 			</tbody>
-		  </table>";
+		  </table>';
 	
 	
 ?>
@@ -120,66 +120,47 @@
   <head>
      <meta charset="UTF-8">
      <title>CRUD</title>
-     <style>
-        input {
-        width: 250px;
-        padding: 5px;
-     }
-     .redondeado {
-       border-radius: 5px;
-     }
-     .confondo {
-       background-color: #def;
-     }
-     .sinborde {
-        border: 0;
-     }
-      .sinbordefondo {
-       background-color: #eee;
-       border: 0;
-       size: "200";
-     }
-    .outlinenone {
-    outline: none;
-    background-color: #dfe;
-    border: 0;
-     }
-  .redondeadonorelieve {
-    border-radius: 5px;
-    border: 1px solid #39c;
-     }
-    </style>
+	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	 <link rel="stylesheet" href="custom.css">
     </head>
 	<body>
-		<h2>ABM USUARIOS</h2>
-		<form method="post" action="procesar_usuarios_gus.php">
-		  <br>
-		     <input type="text" name="mensaje" readOnly="true" class="sinbordefondo" value="<?php echo $msg; ?>" >
-		  <br>
-		  ID:<br>
-		  <input type="number" name="id" readOnly="true" value="<?php echo $id; ?>">
-		  <br>
-		  
-		  CODIGO USUARIO:<br>
-		  <input type="string" name="codigo" value="<?php echo $codigo; ?>" <?php echo $opeaux=='mod' ? 'readOnly' : ''?>>
-		  <input type="hidden" name="opeaux" value="<?php echo $opeaux; ?>">
-		  <br>
-		  		  
-		  NOMBRE:<br>
-		  <input type="string" name="nombre" value="<?php echo $nombre; ?>" >
-		  <br>
-		  
-		  APELLIDO:<br>
-		  <input type="string" name="apellido" value="<?php echo $apellido; ?>" >
-		  <br>
-		  
-		  <input type="submit" value="GUARDAR">
-		  <input type="submit" name = "limpiar" value="LIMPIAR">
-		</form>
-		<br>
-		<br>
-		<?php echo $tabla; ?>
-		
+		<div class="container card  col-sm-6">
+			<div class="card-header">
+				<h2>ABM USUARIOS</h2>
+			</div>
+			<div class="card-body">
+				<form method="post" action="procesar_usuarios_gus.php">
+					<div class="form-group">
+						<small id="emailHelp" class="form-text text-danger"><?php echo $msg; ?></small>
+					</div>
+					<div class="form-group">
+						<input type="number" name="id" readOnly="true" value="<?php echo $id; ?>" class="form-control" placeholder="Id">
+					</div>
+					  
+					  <div class="form-group">
+						  <input type="string" name="codigo" value="<?php echo $codigo; ?>" <?php echo $opeaux=='mod' ? 'readOnly' : ''?> class="form-control" placeholder="Codigo">
+						  <input type="hidden" name="opeaux" value="<?php echo $opeaux; ?>">
+					  </div>
+					  
+					  <div class="form-group"> 
+						  <input type="string" name="nombre" value="<?php echo $nombre; ?>" class="form-control" placeholder="Nombre">
+					  </div>
+					  
+					  <div class="form-group"> 
+						  <input type="string" name="apellido" value="<?php echo $apellido; ?>" class="form-control" placeholder="Apellido">
+					  </div>
+					  <div class="form-group text-center">
+						
+						  <input type="submit" value="GUARDAR" class="btn btn-primary col-sm-3">
+						
+						  <input type="submit" name = "limpiar" class="btn btn-success col-sm-3" value="LIMPIAR">
+						
+					  </div>
+					
+				</form>
+			</div>
+			<?php echo $tabla; ?>
+		</div>
 	</body>
 </html>
 <script>
