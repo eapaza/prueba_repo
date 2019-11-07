@@ -20,7 +20,8 @@
 			});
 		
 			$('#btn_limpiar').on("click", function(){
-				location.reload();//limpiar();
+				//location.reload();
+				limpiar();
 			});
 						
 			function cargar_tabla(){
@@ -52,14 +53,14 @@
 				});
 			}
 			
-			function Limpiar()
+			function limpiar()
             {
-               //$("#id").val("");
-               //$("#codigo").val("");
-               //$("#opeaux").val("");
-               //$("#nombre").val("");
-               //$("#apellido").val("");
-               location.reload();
+               $("#id").val("");
+               $("#codigo").val("");
+               $("#opeaux").val("");
+               $("#nombre").val("");
+               $("#apellido").val("");
+               //location.reload();
             }
 			
          });

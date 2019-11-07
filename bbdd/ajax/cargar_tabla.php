@@ -7,7 +7,8 @@
 		$codigo1 = '"' . "{$row['codigo']}" . '"';
 		$nombre1 = '"' . "{$row['nombre']}" . '"';
 		$apellido1 = '"' . "{$row['apellido']}" . '"';
-		$tablaDetalle .= "<tr><td>{$row['id']}</td><td>{$row['codigo']}</td><td>{$row['nombre']}</td><td>{$row['apellido']}</td><td><a href='jquery.html?id={$row['id']}&ope=upd'>editar</a><a href='#' onClick='confirmar({$row['id']},{$codigo1},{$nombre1},{$apellido1})'> eliminar</a></td><tr>";
+		//$tablaDetalle .= "<tr><td>{$row['id']}</td><td>{$row['codigo']}</td><td>{$row['nombre']}</td><td>{$row['apellido']}</td><td><a href='jquery.html?id={$row['id']}&ope=upd'>editar</a><a href='#' onClick='confirmar({$row['id']},{$codigo1},{$nombre1},{$apellido1})'> eliminar</a></td><tr>";
+		$tablaDetalle .= "<tr><td>{$row['id']}</td><td>{$row['codigo']}</td><td>{$row['nombre']}</td><td>{$row['apellido']}</td><td><button id='btn_editar'>Editar</button><button id='btn_eliminar'>Eliminar</button></td><tr>";
 	}
 	$tabla =  '<table class="table"> 
 			<thead class="thead-dark">
