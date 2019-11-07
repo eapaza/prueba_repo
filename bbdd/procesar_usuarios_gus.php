@@ -59,7 +59,8 @@
 					   }
 				    }
 				    if ($validar == 'kkk') {
-				       $res = insertar($_REQUEST['id'], $_REQUEST['codigo'], $_REQUEST['nombre'], $_REQUEST['apellido']);										}
+				       $res = insertar($_REQUEST['id'], $_REQUEST['codigo'], $_REQUEST['nombre'], $_REQUEST['apellido']);
+					}
 				    else
 				    {
 					   $res = false;	
