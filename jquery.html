@@ -33,11 +33,11 @@
 				$.ajax({
 					url: "bbdd/ajax/insertar.php",
 					data: $("#form_usuarios").serialize(),
-					//dataType: "application/json",
+					dataType: 'json',
 					type: "post",
-					success: function(result){
+					success: function(resp){
 						//$('#resultado').html(result);
-						var resp = JSON.parse(result)
+						//var resp = JSON.parse(result)
 						console.log(resp);
 						if (resp.estado == 0){
 							toastr.success(resp.mensaje);
