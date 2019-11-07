@@ -19,7 +19,10 @@
 				insertar();
 			});
 		
-			
+			$('#btn_limpiar').on("click", function(){
+				location.reload();//limpiar();
+			});
+						
 			function cargar_tabla(){
 				$.ajax({
 					url: "bbdd/ajax/cargar_tabla.php",
@@ -48,6 +51,16 @@
 					}
 				});
 			}
+			
+			function Limpiar()
+            {
+               //$("#id").val("");
+               //$("#codigo").val("");
+               //$("#opeaux").val("");
+               //$("#nombre").val("");
+               //$("#apellido").val("");
+               location.reload();
+            }
 			
          });
 		 
